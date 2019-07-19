@@ -1,0 +1,38 @@
+language: node_js
+node_js: stable
+
+jobs:
+  include:
+    - master
+      if: type = pull_request
+
+branches:
+  only:
+  - master
+cache:
+  directories:
+  - node_modules
+before_install:
+  # 配置 ssh key
+  - openssl enc -aes-256-cbc -d -K $ssh_key -iv $ssh_iv -in ./travis_ssh.enc -out ~/.ssh/travis_ssh
+  - cp -af ./travis_ssh.pub ~/.ssh/travis_ssh.pub
+  - cp -af ./ssh.config ~/.ssh/config
+  - chmod 600 ~/.ssh/travis_ssh
+  - eval $(ssh-agent)
+  # 安装 yarn、skpm
+  - npm install -g yarn
+  - yarn global add skpm
+script:
+  # 创建 example
+  - rm -rf ./example
+  - skpm create example --template=yinxulai/sketch-plugin-template-webview-with-react
+after_script:
+  # 将 example 提交到 master
+  - git status
+  - git remote
+  - git add ./example
+  - git config user.name "travis bot"
+  - git commit -m "auto update example"
+  - git config user.email "travis@yinxulai.com"
+  - git remote set-url origin git@github.com:yinxulai/sketch-plugin-template-webview-with-react.git
+  - git push --quiet origin HEAD:master

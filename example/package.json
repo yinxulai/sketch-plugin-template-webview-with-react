@@ -1,0 +1,40 @@
+{
+  "name": "example",
+  "description": "",
+  "version": "0.1.0",
+  "author": "yinxulai <yinxulai@hotmail.com>",
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "resources": [
+    "src/view/index.js"
+  ],
+  "devDependencies": {
+    "@skpm/builder": "^0.7.0",
+    "@skpm/extract-loader": "^2.0.2",
+    "css-loader": "^3.1.0",
+    "file-loader": "^4.1.0",
+    "html-loader": "^0.5.5",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "style-loader": "^0.23.1",
+    "react-sketchapp": "^3.0.0-beta.9",
+    "sketch-module-web-view": "^3.1.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "sketch": ">=49.0"
+  },
+  "skpm": {
+    "name": "example",
+    "manifest": "src/manifest.json",
+    "main": "example.sketchplugin",
+    "assets": [
+      "assets/**/*"
+    ],
+    "sketch-assets-file": "sketch-assets/icons.sketch"
+  }
+}
