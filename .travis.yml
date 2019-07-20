@@ -1,17 +1,18 @@
 language: node_js
 node_js: stable
 
-jobs:
-  include:
-    - master
-      if: type = pull_request
+stages:
+  - name: script
+    if: type == pull_request
 
 branches:
   only:
-  - master
+    - master
+    
 cache:
   directories:
-  - node_modules
+    - node_modules
+
 before_install:
   # 配置 ssh key
   - openssl enc -aes-256-cbc -d -K $ssh_key -iv $ssh_iv -in ./travis_ssh.enc -out ~/.ssh/travis_ssh
@@ -22,11 +23,15 @@ before_install:
   # 安装 yarn、skpm
   - npm install -g yarn
   - yarn global add skpm
-script:
+
+
+before_script:
   # 创建 example
   - rm -rf ./example
   - skpm create example --template=yinxulai/sketch-plugin-template-webview-with-react
-after_script:
+
+
+script:
   # 将 example 提交到 master
   - git status
   - git remote
