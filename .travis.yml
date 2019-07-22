@@ -36,8 +36,8 @@ script:
   - git status
   - git remote
   - git add ./example
-  - git config user.name "travis bot"
-  - git commit -m "auto update example"
-  - git config user.email "travis@yinxulai.com"
-  - git remote set-url origin git@github.com:yinxulai/sketch-plugin-template-webview-with-react.git
-  - git push --quiet origin HEAD:master
+  # - git config user.name "travis bot"
+  # - git commit -m "auto update example"
+  # - git config user.email "travis@yinxulai.com"
+  # - git remote set-url origin git@github.com:yinxulai/sketch-plugin-template-webview-with-react.git
+  # - git push --quiet origin HEAD:master
