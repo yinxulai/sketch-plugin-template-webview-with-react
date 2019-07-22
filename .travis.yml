@@ -9,10 +9,18 @@ cache:
   directories:
     - node_modules
 
-jobs:
-  include:
-    - stage: generate example
-      script: ./install_ssh
+# jobs:
+#   include:
+#     - stage: generate example
+#       name: 更新构建示例项目
+#       script: install_ssh
+
+stages:
+  - name: generate example
+  - install_ssh
+  - install_package_manage
+  - generate_example
+    if: type IN (pull_request)
 
 
 install_ssh:
