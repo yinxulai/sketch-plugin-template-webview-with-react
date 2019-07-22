@@ -5,7 +5,9 @@ export default class App extends React.Component {
     const style = {
       width: '100%',
       height: '100%',
-      overflow: 'hidden'
+      color: '#FFFFFF',
+      overflow: 'hidden',
+      backgroundColor: '#333333'
     };
     return (
       <div style={style}>
