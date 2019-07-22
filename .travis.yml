@@ -12,7 +12,11 @@ cache:
 jobs:
   include:
     - stage: test
-      script: echo test
+      script:
+        - echo test1
+        - echo test2
+        - echo test3
+
     - stage: deploy
       script: echo deploy
 
