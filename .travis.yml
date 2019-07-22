@@ -11,38 +11,32 @@ cache:
 
 jobs:
   include:
-    - stage: test
-      script:
-        - echo test1
-        - echo test2
-        - echo test3
-
-    - stage: deploy
-      script: echo deploy
+    - stage: generate example
+      script: ./install_ssh
 
 
-# install_ssh:
-#   # 配置 ssh key
-#   - openssl enc -aes-256-cbc -d -K $ssh_key -iv $ssh_iv -in ./travis_ssh.enc -out ~/.ssh/travis_ssh
-#   - cp -af ./travis_ssh.pub ~/.ssh/travis_ssh.pub
-#   - cp -af ./ssh.config ~/.ssh/config
-#   - chmod 600 ~/.ssh/travis_ssh
-#   - eval $(ssh-agent)
+install_ssh:
+  # 配置 ssh key
+  - openssl enc -aes-256-cbc -d -K $ssh_key -iv $ssh_iv -in ./travis_ssh.enc -out ~/.ssh/travis_ssh
+  - cp -af ./travis_ssh.pub ~/.ssh/travis_ssh.pub
+  - cp -af ./ssh.config ~/.ssh/config
+  - chmod 600 ~/.ssh/travis_ssh
+  - eval $(ssh-agent)
 
-# install_package_manage:
-#     # 安装 yarn、skpm
-#   - npm install -g yarn
-#   - yarn global add skpm
+install_package_manage:
+    # 安装 yarn、skpm
+  - npm install -g yarn
+  - yarn global add skpm
 
 # # 创建 example
-# generate_example:
-#   - rm -rf ./example
-#   - skpm create example --template=yinxulai/sketch-plugin-template-webview-with-react
-#   - git status
-#   - git remote
-#   - git add ./example
-#   - git config user.name "travis bot"
-#   - git commit -m "auto update example"
-#   - git config user.email "travis@yinxulai.com"
-#   - git remote set-url origin git@github.com:yinxulai/sketch-plugin-template-webview-with-react.git
-#   - git push --quiet origin HEAD:master
+generate_example:
+  - rm -rf ./example
+  - skpm create example --template=yinxulai/sketch-plugin-template-webview-with-react
+  - git status
+  - git remote
+  - git add ./example
+  - git config user.name "travis bot"
+  - git commit -m "auto update example"
+  - git config user.email "travis@yinxulai.com"
+  - git remote set-url origin git@github.com:yinxulai/sketch-plugin-template-webview-with-react.git
+  - git push --quiet origin HEAD:master
