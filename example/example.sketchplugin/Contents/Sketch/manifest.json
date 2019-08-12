@@ -1,0 +1,25 @@
+{
+  "$schema": "https://raw.githubusercontent.com/BohemianCoding/SketchAPI/develop/docs/sketch-plugin-manifest-schema.json",
+  "icon": "icon.png",
+  "commands": [
+    {
+      "name": "command",
+      "identifier": "example.command-identifier",
+      "script": "command.js"
+    }
+  ],
+  "menu": {
+    "title": "example",
+    "items": [
+      "example.command-identifier"
+    ]
+  },
+  "version": "0.1.0",
+  "description": "",
+  "name": "example",
+  "identifier": "example",
+  "disableCocoaScriptPreprocessor": true,
+  "appcast": "https://raw.githubusercontent.com//master/.appcast.xml",
+  "author": "yinxulai",
+  "authorEmail": "yinxulai@hotmail.com"
+}

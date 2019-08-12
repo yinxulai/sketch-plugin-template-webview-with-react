@@ -3,31 +3,32 @@ module.exports = config => {
 
   config.module.rules.push({
     test: /\.(html)$/,
-    use: [{
-      loader: "@skpm/extract-loader",
-    },
-    {
-      loader: "html-loader",
-      options: {
-        attrs: [
-          'img:src',
-          'link:href'
-        ],
-        interpolate: true,
+    use: [
+      {
+        loader: "html-loader",
+        options: {
+          attrs: [
+            'img:src',
+            'link:href'
+          ],
+          interpolate: true,
+        },
       },
-    },
     ]
   })
 
   config.module.rules.push({
     test: /\.(css)$/,
-    use: [
-      {
-        loader: "@skpm/extract-loader",
-      },
-      {
-        loader: "css-loader",
-      },
-    ]
+    use: ["css-loader"]
+  })
+
+  config.module.rules.push({
+    test: /\.scss$/,
+    use: ["style-loader", "css-loader", "sass-loader"]
+  })
+
+  config.module.rules.push({
+    test: /\.less$/,
+    use: ["style-loader", "css-loader", "less-loader"]
   })
 };
