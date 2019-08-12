@@ -24,11 +24,11 @@ module.exports = config => {
 
   config.module.rules.push({
     test: /\.scss$/,
-    use: ["style-loader", "css-loader", "sass-loader"]
+    use: ["style-loader", { loader: 'css-loader', options: { modules: true } }, "sass-loader"]
   })
 
   config.module.rules.push({
     test: /\.less$/,
-    use: ["style-loader", "css-loader", "less-loader"]
+    use: ["style-loader", { loader: 'css-loader', options: { modules: true } }, "less-loader"]
   })
 };
