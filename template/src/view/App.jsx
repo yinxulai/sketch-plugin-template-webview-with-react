@@ -1,4 +1,6 @@
 import * as React from 'react';
+import * as less from './style.less'
+import * as scss from './style.scss'
 
 export default class App extends React.Component {
   render() {
@@ -11,7 +13,8 @@ export default class App extends React.Component {
     };
     return (
       <div style={style}>
-        Hello sketch react plugin
+        <p className={less.text}>Hello sketch react plugin</p>
+        <p className={scss.text}>Hello sketch react plugin</p>
       </div>
     );
   }
